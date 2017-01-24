@@ -1,0 +1,99 @@
+﻿<html >
+<head>
+    <title></title>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+    <ol>
+        <li id="alrt">alert</li>
+        <li id="confirm">confirm</li>
+        <li id="prompt">prompt</li>
+        <li id="prompt_2">prompt with default value</li>
+        <li id="custom">custom</li>
+    </ol>
+
+
+</body>
+</html>
+
+<script src="../Scripts/jquery-1.9.1.min.js"></script>
+<script src="../Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+ 
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#alrt').click(function () {
+            bootbox.alert("Hello world!", function () { });
+        });
+
+        $('#confirm').click(function () {
+            bootbox.confirm("Are you sure?", function (result) {
+                alert(result);
+            });
+        });
+
+        $('#prompt').click(function () {
+            bootbox.prompt("What is your name?", function (result) {
+                if (result === null) {
+                    alert("Prompt dismissed");
+                } else {
+                    alert("Hi " + result);
+                }
+            });
+        });
+
+        $('#prompt_2').click(function () {
+            bootbox.prompt({
+                title: "What is your real name?",
+                value: "makeusabrew",
+                callback: function (result) {
+                    if (result === null) {
+                        alert("Prompt dismissed");
+                    } else {
+                        alert("Hi " + result);
+                    }
+                }
+            });
+        });
+
+        $('#custom').click(function () {
+            bootbox.dialog({
+                message: "I am a custom dialog",
+                title: "Custom title",
+                buttons: {
+                    success: {
+                        label: "Success!",
+                        className: "btn-success",
+                        callback: function () {
+                            alert("great success");
+                        }
+                    },
+                    danger: {
+                        label: "Danger!",
+                        className: "btn-danger",
+                        callback: function () {
+                            alert("uh oh, look out!");
+                        }
+                    },
+                    main: {
+                        label: "Click ME!",
+                        className: "btn-primary",
+                        callback: function () {
+                            alert("Primary button");
+                        }
+                    }
+                }
+            });
+        });
+
+
+    });
+  
+
+</script>
